@@ -5,7 +5,7 @@ from customer_orders.views import HomePage,Menu,LoginPage,SignupPage,AboutPage, 
 urlpatterns = [
     path('',LoginPage,name='login'),
     path('signup/',SignupPage,name='signup'),
-    path('home',HomePage,name='home'),
+    path('home/',HomePage,name='home'),
     path('menu/',Menu,name='menu'), 
     path('about/',AboutPage,name='about'), 
     path('filter-food/<int:id>/',filter_food,name='filter_food'),  
