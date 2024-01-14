@@ -105,11 +105,23 @@ def order(request, id):
 
 
 
+def Cart_view(request):
+    # Get the current user's email
+    user_email = request.user.email
+
+    # Get the current date and time
+    current_datetime = datetime.now()
+
+    # Filter orders based on user email and today's date
+    filtered_orders = Order.objects.filter(
+        customer__email=user_email,
+        date__date=current_datetime.date()
+    )
+    total_price = sum(order.total for order in filtered_orders)
+
+
+    return render(request, 'cart.html', {'filtered_orders': filtered_orders, 'total_price':total_price})
+
 def AboutPage(request):
     return render(request,'about.html')
-
-def Cart_view(request):
-    return render(request,'cart.html')
-
-
 
