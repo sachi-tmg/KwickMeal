@@ -7,6 +7,9 @@ from .models import Customer
 from django.contrib.auth.hashers import make_password
 from datetime import datetime
 from django.contrib.auth import logout,login,authenticate
+import requests
+import json
+
 
 
 # Create your views here.
@@ -67,7 +70,9 @@ def logout_view(request):
 
 
 def HomePage(request):
-    return render(request,'home.html')
+    user_email = request.user.email
+
+    return render(request,'home.html', context={'user_email':user_email})
 
 def Menu(request):
     food_item = Food.objects.all()
@@ -124,4 +129,30 @@ def Cart_view(request):
 
 def AboutPage(request):
     return render(request,'about.html')
+
+def initkhalti(request):
+    url = "https://a.khalti.com/api/v2/epayment/initiate/"
+
+    payload = json.dumps({
+        "return_url": "http://example.com/",
+        "website_url": "https://example.com/",
+        "amount": "1000",
+        "purchase_order_id": "Order01",
+        "purchase_order_name": "test",
+        "customer_info": {
+        "name": "Ram Bahadur",
+        "email": "test@khalti.com",
+        "phone": "9800000001"
+        }
+    })
+    headers = {
+    'Authorization': 'key live_secret_key_68791341fdd94846a146f0457ff7b455',
+    'Content-Type': 'application/json',
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    print(response.text)
+    
+               
 
