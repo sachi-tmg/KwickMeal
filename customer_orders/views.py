@@ -131,6 +131,8 @@ def AboutPage(request):
     return render(request,'about.html')
 
 
+
+
 def verify_payment(request):
     data = request.POST
     product_id = data['product_identity']
