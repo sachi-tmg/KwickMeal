@@ -13,7 +13,7 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('cart/', Cart_view, name='cart'),
     path('reservation/', Reservation, name='reservation'),
-    path('pay/', verify_payment, name='pay'),
+    path('api/verify_payment',verify_payment,name='verify_payment')
 
 
 
