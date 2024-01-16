@@ -2,7 +2,7 @@ from django.shortcuts import redirect,render
 from django.contrib.auth.models import User
 from customer_orders.models import Customer, Food_Item,Food,Order
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from .models import Customer
 from django.contrib.auth.hashers import make_password
 from datetime import datetime
@@ -130,29 +130,35 @@ def Cart_view(request):
 def AboutPage(request):
     return render(request,'about.html')
 
-def initkhalti(request):
-    url = "https://a.khalti.com/api/v2/epayment/initiate/"
 
-    payload = json.dumps({
-        "return_url": "http://example.com/",
-        "website_url": "https://example.com/",
-        "amount": "1000",
-        "purchase_order_id": "Order01",
-        "purchase_order_name": "test",
-        "customer_info": {
-        "name": "Ram Bahadur",
-        "email": "test@khalti.com",
-        "phone": "9800000001"
-        }
-    })
-    headers = {
-    'Authorization': 'key live_secret_key_68791341fdd94846a146f0457ff7b455',
-    'Content-Type': 'application/json',
+def verify_payment(request):
+    data = request.POST
+    product_id = data['product_identity']
+    token = data['token']
+    amount = data['amount']
+
+    url = "https://khalti.com/api/v2/payment/verify/"
+    payload = {
+    "token": token,
+    "amount": amount
     }
+    headers = {
+    "Authorization": "Key test_secret_key_2e13ded0a52640a9b945de97955e3370"
+    }
+    
 
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.post(url, payload, headers = headers)
+    
+    response_data = json.loads(response.text)
+    status_code = str(response.status_code)
 
-    print(response.text)
+    print(response_data)
+    if status_code == '400':
+        response = JsonResponse({'status':'false','message':response_data['detail']}, status=500)
+    return response
+
+def Reservation(request):
+    return render(request,'reservation.html')
     
                
 

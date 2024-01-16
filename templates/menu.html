@@ -112,7 +112,8 @@
 
     <div class="menu">
         <div class="dropdown">
-            <button class="dropbtn">FoodList</button>
+            <button class="dropbtn" id="dropbtn">Dropdown Button</button>
+
             <div class="dropdown-content">
             {% for food in food_list %}
                 <a href="{%url 'filter_food' food.id %}" onclick="showMenu('burger')">{{food.name}}</a>
@@ -193,6 +194,24 @@
             // Add your logic here if needed
         });
     </script>
+    <script>
+        let lastScrollPosition = window.pageYOffset;
+      
+        window.onscroll = function() {
+          const currentScrollPosition = window.pageYOffset;
+      
+          if (lastScrollPosition > currentScrollPosition) {
+            // Scrolling up, show the dropbtn
+            document.getElementById("dropbtn").style.display = "block";
+          } else {
+            // Scrolling down, hide the dropbtn
+            document.getElementById("dropbtn").style.display = "none";
+          }
+      
+          lastScrollPosition = currentScrollPosition;
+        };
+      </script>
+      
 </body>
 
 </html>

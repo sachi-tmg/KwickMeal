@@ -85,7 +85,7 @@
                     <a href="#">
                         <li>Blog</li>
                     </a>
-                    <a href="#">
+                    <a href="{% url 'reservation' %}">
                         <li>Reservation</li>
                     </a>
 
@@ -129,7 +129,7 @@
                     dal, savor aromatic curries such as gundruk and momos, and experience the richness of Nepali spices.
                     Immerse yourself in the heart of Nepali cuisine, where each dish tells a story of culture and taste
                 </p>
-                <button class="red_btn" onclick="redirectToMenu()"> Visit Now<i
+                <button class="red_btn" href="{% url 'menu' %}" onclick="redirectToMenu()"> Visit Now<i
                         class="fa-solid fa-arrow-right-long"></i></button>
             </div>
             <div>
