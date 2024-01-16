@@ -1,81 +1,111 @@
 <!DOCTYPE html>
+{%load static %}
 <html>
 <head>
-  <style>
-    body {
-      text-align: center;
-    }
-  
-    table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 50%;
-      margin: auto; /* Center the table */
-      top: 50px;
-    }
-  
-    td, th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-  
-    tr:nth-child(even) {
-      background-color: #dddddd;
-    }
-  </style>
-  
+  <link rel="stylesheet" href="{%static 'css/cart.css'%}"> 
 </head>
-<head>
-  <meta charset="UTF-8">
-  <link rel="shortcut icon" href="./image/Logo.webp" type="image/x-icon">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://kit.fontawesome.com/7a4b62b0a4.js" crossorigin="anonymous"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>kwickMeal | cart </title>
-
-</head>
-
 <body>
 
-<table1>
-
-  
-  <tr>
-    <td>Customer Name : {{ filtered_orders.first.customer.customer_name }}</td>
-  </tr>
-</table1>
-
-<table>
-  <tr>
-    <th>Food Name</th>
-    <th>Quantity</th>
-    <th>Price</th>
-  </tr>
-
-  {% for order in filtered_orders %}
-  <tr>
-    <td>{{ order.food.name }}</td>
-    <td>{{ order.quantity }}</td>
-    <td>{{ order.total }}</td>
-  </tr>
-  {% endfor %}
-  <tr>
-
-    <td colspan="3" style="text-align: right;">Total: {{ total_price }}</td>
-  </tr>
-
-</table>
-<div class="khaltilogo">
-  <a href="{% url 'menu' %}" target="_blank">
-      <img class="khalti" id="payment-button" src='/static/images/khalti.png' alt="Pay with Khalti" style="cursor: pointer;">
-  </a>
-</div>
+<div class="container">
+  <a class="close-button" href="{% url 'menu' %}">Back to Menu</a>
 
 
+  <!-- Display Customer Name above the table -->
+  <td> <span> Customer Name </span>: {{ filtered_orders.first.customer.customer_name }}</td>
 
+  <table>
+    <tr>
+      <th>Food Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+
+    {% for order in filtered_orders %}
+    <tr>
+      <td>{{ order.food.name }}</td>
+      <td class="button-container">
+        <button onclick="updateQuantity('{{ order.id }}', -1)">-</button>
+        <span class="quantity" id="quantity_{{ order.id }}">{{ order.quantity }}</span>
+        <button onclick="updateQuantity('{{ order.id }}', 1)">+</button>
+      </td>
+      <td class="price">{{ order.total }}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td colspan="3" style="text-align: right;">Total: <span id="total">{{ total_price }}</span></td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="khaltilogo">
+    <img class="khalti" id="payment-button" src='/static/images/khaltii.png' alt="Pay with Khalti">
+  </div>
+
+  <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
+  <script>
+    function updateQuantity(orderId, change) {
+      var quantityElement = document.getElementById('quantity_' + orderId);
+      var currentQuantity = parseInt(quantityElement.innerHTML);
+      var newQuantity = currentQuantity + change;
+
+      if (newQuantity >= 0) {
+        quantityElement.innerHTML = newQuantity;
+        updateTotal();
+      }
+    }
+
+    function updateTotal() {
+      var totalElement = document.getElementById('total');
+      var total = 0;
+
+      var quantityElements = document.querySelectorAll('.quantity');
+      var priceElements = document.querySelectorAll('.price');
+
+      for (var i = 0; i < quantityElements.length; i++) {
+        var quantity = parseInt(quantityElements[i].innerHTML);
+        var price = parseFloat(priceElements[i].innerHTML);
+        total += quantity * price;
+      }
+
+      totalElement.innerHTML = total.toFixed(2);
+    }
+  </script>
+  <script>
+    var config = {
+        // replace the publicKey with yours
+        "publicKey": "test_public_key_d0b720e47bdc44caa45f48cfd302a9bc",
+        "productIdentity": "1234567890",
+        "productName": "Dragon",
+        "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
+        "paymentPreference": [
+            "KHALTI",
+            "EBANKING",
+            "MOBILE_BANKING",
+            "CONNECT_IPS",
+            "SCT",
+            ],
+        "eventHandler": {
+            onSuccess (payload) {
+                // hit merchant api for initiating verfication
+                console.log(payload);
+                alert('Payment successful! Thank you for purchasing.');
+            },
+            onError (error) {
+                console.log(error);
+            },
+            onClose () {
+                console.log('widget is closing');
+            }
+        }
+    };
+
+    var checkout = new KhaltiCheckout(config);
+    var btn = document.getElementById("payment-button");
+    btn.onclick = function () {
+        // minimum transaction amount must be 10, i.e 1000 in paisa.
+        checkout.show({amount: {{ total_price }} });
+    }
+</script>
 
 </body>
 </html>

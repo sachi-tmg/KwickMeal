@@ -381,7 +381,7 @@
 
     .menu .menu_box .menu_card .menu_text .menu_btn {
         margin-bottom:40px
-        color: #000;
+        
         /* Ensure the text color is set */
     }
 }
@@ -395,12 +395,17 @@
     border: none;
     cursor: pointer;
     border-radius: 16px;
+    position: fixed;
+    top: 70px; /* Adjust the top position as needed */
+    right: 50px; /* Adjust the right position as needed */
+    z-index: 2; /* Ensure the dropdown appears above other elements */
+    
 }
 
 .dropdown {
     position: fixed;
     top: 70px; /* Adjust the top position as needed */
-    right: 50px; /* Adjust the right position as needed */
+    right: 80px; /* Adjust the right position as needed */
     display: flex;
     z-index: 2; /* Ensure the dropdown appears above other elements */
 }

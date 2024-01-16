@@ -1,6 +1,6 @@
 from django.urls import path
 
-from customer_orders.views import HomePage,Menu,LoginPage,SignupPage,AboutPage, filter_food, order,logout_view,Cart_view
+from customer_orders.views import HomePage,Menu,LoginPage,SignupPage,AboutPage, filter_food, order,logout_view,Cart_view,Reservation,verify_payment
 
 urlpatterns = [
     path('',LoginPage,name='login'),
@@ -12,6 +12,8 @@ urlpatterns = [
     path('order/<int:id>/',order,name='order'),  
     path('logout/', logout_view, name='logout'),
     path('cart/', Cart_view, name='cart'),
+    path('reservation/', Reservation, name='reservation'),
+    path('pay/', verify_payment, name='pay'),
 
 
 
