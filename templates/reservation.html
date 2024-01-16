@@ -2,49 +2,98 @@
 {%load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static 'css/reservation.css'%}"> 
-
-    <title>Kwickmeal - Reservation</title>
+	<meta charset="UTF-8">
+	<title>Booking</title>
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Font -->
+	<link rel="stylesheet" href="{%static 'css/reservation.css'%}"> 
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700,900" rel="stylesheet">
 </head>
 <body>
 
-<div class="reservation-form">
-    <h2>Reservation Form</h2>
-    <form class="form" id="reservationForm" action="{% url  'reservation' %}" method="post">
-        {% csrf_token %}
-        <label for="name">Name:</label>
-        <input type="text" class="input" name="name" required>
+<div class="wrapper">
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
 
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" required>
+	<div class="container">
+		<div class="container-time">
 
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date" required>
 
-        <label for="time">Time:</label>
-        <input type="time" id="time" name="time" required>
+				<h2 class="heading">
+					Time Open
+				</h2>
 
-        <label for="guests">Number of Guests:</label>
-        <select id="guests" name="guests" required>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <!-- Add more options as needed -->
-        </select>
 
-        <button type="submit">Reserve Table</button>
-    </form>
-</div>
+				<h3 class="heading-days">
+					Monday - Friday
+				</h3>
 
+
+				<p> 7AM - 11AM (BreakFast)</p>
+				<p> 11AM - 10PM (Lunch/Dinner)</p>
+
+				<h3 class="heading-days">
+					Saturday - Sunday
+				</h3>
+
+
+				<p> 9AM - 1PM (BreakFast)</p>
+				<p> 1AM - 10PM (Lunch/Dinner)</p>
+
+				<hr>
+
+				<h4 class="heading-phone">
+					Call Us: +977 9889 4567 32
+				</h4>
+
+		</div>
+
+		<div class="container-form">
+				<form action="#">
+					<h2 class="heading heading-yellow"> <span>Table</span> Reservation </h2>
+
+					<div class="form-field">
+						<p> Name : </p>
+						<input type="text" placeholder="Full Name">
+					</div>
+
+
+					<div class="form-field">
+						<p> Email :</p>
+						<input type="email" placeholder="Email">
+					</div>
+
+
+					<div class="form-field">
+						<p> Date For Reservation :</p>
+						<input type="date">
+					</div>
+
+
+					<div class="form-field">
+						<p> Time :</p>
+						<input type="time">
+					</div>
+
+
+					<div class="form-field">
+						<p> Number of Guest :</p>
+						<select name="select" id="#">
+							<option value="1">1 Guest</option>
+							<option value="2">2 Guests</option>
+							<option value="3">3 Guests</option>
+							<option value="4">4 Guests</option>
+							<option value="5">5 Guests</option>
+						</select>
+					</div>
+
+					<button class="btn">Submit</button>
+				</form>
+
+		</div>
+
+	</div>
+	
+</div>	
+	
 </body>
 </html>
