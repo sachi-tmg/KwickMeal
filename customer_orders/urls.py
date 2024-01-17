@@ -13,7 +13,11 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('cart/', Cart_view, name='cart'),
     path('reservation/', Reservation, name='reservation'),
+<<<<<<< HEAD
     path('api/verify_payment',verify_payment,name='verify_payment'),
+=======
+    path('api/verify_payment',verify_payment,name='verify_payment')
+>>>>>>> 6fcd76f6ee5b5c8d6eb4379b4957bd132e44b86c
 
 
 
