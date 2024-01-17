@@ -48,36 +48,37 @@
 		</div>
 
 		<div class="container-form">
-				<form action="#">
+			<form action="{% url 'reservation' %}" method="post">
+				{% csrf_token %}
 					<h2 class="heading heading-yellow"> <span>Table</span> Reservation </h2>
 
 					<div class="form-field">
 						<p> Name : </p>
-						<input type="text" placeholder="Full Name">
+						<input type="text" name="fname" placeholder="Full Name">
 					</div>
 
 
 					<div class="form-field">
 						<p> Email :</p>
-						<input type="email" placeholder="Email">
+						<input type="email" name="email" placeholder="Email">
 					</div>
 
 
 					<div class="form-field">
 						<p> Date For Reservation :</p>
-						<input type="date">
+						<input type="date" name="date">
 					</div>
 
 
 					<div class="form-field">
 						<p> Time :</p>
-						<input type="time">
+						<input type="time" name="time">
 					</div>
 
 
 					<div class="form-field">
 						<p> Number of Guest :</p>
-						<select name="select" id="#">
+						<select id="#" name="number_of_guest">
 							<option value="1">1 Guest</option>
 							<option value="2">2 Guests</option>
 							<option value="3">3 Guests</option>

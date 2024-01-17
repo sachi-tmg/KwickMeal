@@ -42,5 +42,13 @@ class Order(models.Model):
         return f"{self.customer.customer_name}-{self.food.name}"
 
 
+class Reservations(models.Model):
+    name= models.CharField(max_length=50)
+    email=models.EmailField()
+    date=models.DateField()
+    time=models.TimeField()
+    number_of_guest=models.IntegerField()
+    def __str__(self):
+        return self.name
 
 

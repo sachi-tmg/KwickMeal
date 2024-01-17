@@ -71,6 +71,17 @@
     }
   </script>
   <script>
+    function verifypayment(payload){
+      $.ajax({
+        url: "{%url 'verify_payment' %}",
+        type: "POST",
+        data: payload,
+        dataType: 'json',
+        success: function(response){alert(response)},
+        error: function (error){alert(error.responseJSON['message'])}
+
+      });
+    }
     var config = {
         // replace the publicKey with yours
         "publicKey": "test_public_key_d0b720e47bdc44caa45f48cfd302a9bc",
