@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order, Customer, Food_Item, Food
+from .models import Order, Customer, Food_Item, Food, Reservations
 
 # class OrderAdmin(admin.ModelAdmin):
 #     readonly_fields = ('customer', 'food','quantity','total')
@@ -12,3 +12,4 @@ from .models import Order, Customer, Food_Item, Food
 admin.site.register(Order)
 # admin.site.register( OrderAdmin)
 admin.site.register([Customer, Food_Item, Food])
+admin.site.register(Reservations)

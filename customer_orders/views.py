@@ -1,6 +1,6 @@
 from django.shortcuts import redirect,render
 from django.contrib.auth.models import User
-from customer_orders.models import Customer, Food_Item,Food,Order
+from customer_orders.models import Customer, Food_Item,Food,Order,Reservations
 from django.contrib import messages
 from django.http import HttpResponse,JsonResponse
 from .models import Customer
@@ -160,7 +160,13 @@ def verify_payment(request):
     return response
 
 def Reservation(request):
-    return render(request,'reservation.html')
+    if request.method == 'POST':
+        name = request.POST.get('fname')
+        email = request.POST.get('email')
+        date = request.POST.get('date')
+        time = request.POST.get('time')
+        number_of_guest = request.POST.get('number_of_guest')
     
-               
+        Reservations.objects.create(name=name,email=email, date=date, time=time, number_of_guest=number_of_guest)
 
+    return render(request,'reservation.html')

@@ -14,6 +14,7 @@ urlpatterns = [
     path('cart/', Cart_view, name='cart'),
     path('reservation/', Reservation, name='reservation'),
     path('api/verify_payment',verify_payment,name='verify_payment')
+    
 
 
 
