@@ -129,8 +129,15 @@
                     dal, savor aromatic curries such as gundruk and momos, and experience the richness of Nepali spices.
                     Immerse yourself in the heart of Nepali cuisine, where each dish tells a story of culture and taste
                 </p>
-                <button class="red_btn" href="{% url 'menu' %}" onclick="redirectToMenu()"> Visit Now<i
-                        class="fa-solid fa-arrow-right-long"></i></button>
+                <button class="red_btn" onclick="redirectToMenu()">Visit Now <i class="fa-solid fa-arrow-right-long"></i></button>
+
+<script>
+    function redirectToMenu() {
+        // Redirect the user to the menu page
+        window.location.href = "{% url 'about' %}"; // Replace with the actual URL of your menu page
+    }
+</script>
+
             </div>
             <div>
                 {% load static %}
@@ -215,60 +222,50 @@
         <div class="main_slide3">
             <div class="fav-head">
                 <h3> Our Popular Food Items </h3>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, laborum corrupti. Facilis
-                    magnam, fuga aspernatur cum aut repudiandae. Molestias cupiditate inventore similique temporibus!
-                    Optio, distinctio blanditiis sint aut sapiente voluptates.</p>
+                <p> Our popular food items are shown given below.</p>
             </div>
             <div class="fav-food">
                 <div class="item">
                     <div>
-                        <img src={% static 'images/food-png-2955.png' %} alt="">
+                        <img src= 'media/bacon_burger.jpg'  alt="">
                     </div>
                     <h3>Food name</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro consequatur ipsam sit sed eius
-                        odio nobis et iusto asperiores! Repellat officiis iste ratione esse eos quidem, expedita
-                        inventore in doloremque!</p>
-                    <p class="fav-price">$2.99</p>
+                    <p>The bacon burger, a savory delight that combines the rich, smoky flavor of crispy bacon with the juicy goodness of a perfectly grilled burger patty. This culinary masterpiece tantalizes the taste buds with a harmonious blend of textures and tastes. </p>
+                    <p class="fav-price">Rs.1400</p>
                 </div>
                 <div class="item">
                     <div>
-                        <img src={% static 'images/gallery_42.webp' %} alt="">
+                        <img src='media/sandwich.jpg' alt="">
                     </div>
                     <h3>Food name</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro consequatur ipsam sit sed eius
-                        odio nobis et iusto asperiores! Repellat officiis iste ratione esse eos quidem, expedita
-                        inventore in doloremque!</p>
-                    <p class="fav-price">$2.99</p>
+                    <p>
+                        A sandwich, a timeless culinary creation that brings together various flavors, textures, and ingredients between two slices of bread. </p>
+                    <p class="fav-price">Rs.600</p>
                 </div>
                 <div class="item">
                     <div>
-                        <img src={% static 'images/gallery_29.jpg' %} alt="">
+                        <img src='media/paratha.webp' alt="">
                     </div>
                     <h3>Food name</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro consequatur ipsam sit sed eius
-                        odio nobis et iusto asperiores! Repellat officiis iste ratione esse eos quidem, expedita
-                        inventore in doloremque!</p>
-                    <p class="fav-price">$2.99</p>
+                    <p>
+                        Paratha, a popular and versatile unleavened flatbread, holds a special place in the heart of South Asian cuisine. </p>
+                    <p class="fav-price">Rs.200</p>
                 </div>
                 <div class="item">
                     <div>
-                        <img src={% static 'images/gallery_34.jpg' %} alt="">
+                        <img src='media/thakali.jpg' alt="">
                     </div>
                     <h3>Food name</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro consequatur ipsam sit sed eius
-                        odio nobis et iusto asperiores! Repellat officiis iste ratione esse eos quidem, expedita
-                        inventore in doloremque!</p>
-                    <p class="fav-price">$2.99</p>
+                    <p>"Thakali khana" refers to the traditional cuisine of the Thakali people, an ethnic group from the Mustang region of Nepal. Thakali cuisine is known for its unique flavors and use of local ingredients</p>
+                    <p class="fav-price">Rs.1500</p>
                 </div>
                 <div class="item">
                     <div>
-                        <img src={% static 'images/gallary_1.jpg' %} alt="">
+                        <img src='media/dessert.jpg' alt="">
                     </div>
                     <h3>Food name</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro consequatur ipsam sit sed eius
-                        odio nobis et iusto asperiores! Repellat officiis iste ratione esse eos quidem, expedita
-                        inventore in doloremque!</p>
-                    <p class="fav-price">$2.99</p>
+                    <p>"Dessert" refers to the sweet course that concludes a meal. Desserts come in a wide variety, catering to diverse preferences and cultural influences.</p>
+                    <p class="fav-price">Rs.1400</p>
                 </div>
             </div>
             <div class="dsgn"></div>
@@ -276,7 +273,7 @@
         <div class="main_slide4">
             <div class="chef-feed">
                 <h2>Customer <span style="color: red;">Feedback</span></h2>
-                <p>My recent dining experience at [Your Restaurant Name] was delightful from beginning to end, I must
+                <p>My recent dining experience at KwickMeal was delightful from beginning to end, I must
                     say. The setting was warm and welcoming, the service was flawless, and above all, the food was
                     delicious.The menu showcases the rich flavors of Nepali cuisine with a variety of dishes.
                     Discovering new treats and classic favorites was enjoyable. The food fared better than I had
@@ -297,13 +294,13 @@
                 <div class="chef-vic">
                     <div>
                         <i class="fa-solid fa-hand-peace"></i>
-                        <h4>68</h4>
-                        <p>Lorem ipsum dolor sit amet.</p>
+                        <h4>1000</h4>
+                        <p>Liked By.</p>
                     </div>
                     <div>
                         <i class="fa-solid fa-trophy"></i>
-                        <h4>956</h4>
-                        <p>Lorem ipsum dolor sit.</p>
+                        <h4>5</h4>
+                        <p>Achievement.</p>
                     </div>
                 </div>
 

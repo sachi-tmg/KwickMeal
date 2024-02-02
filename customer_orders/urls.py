@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic import TemplateView
 
 from customer_orders.views import HomePage,Menu,LoginPage,SignupPage,AboutPage, filter_food, order,logout_view,Cart_view,Reservation,verify_payment
 
@@ -13,7 +14,10 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('cart/', Cart_view, name='cart'),
     path('reservation/', Reservation, name='reservation'),
-    path('api/verify_payment',verify_payment,name='verify_payment')
+    path('api/verify_payment',verify_payment,name='verify_payment'),
+    path('menu.html', TemplateView.as_view(template_name='about.html'), name='about_html'),
+    
+    
     
 
 

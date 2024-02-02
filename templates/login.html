@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="logo">
-                <img src="logo.webp" alt="">
+                <img src={%static 'images/logo1.png' %}  alt="">
             </div>
             <div class="bar">
                 <i class="fa-solid fa-bars"></i>
@@ -56,13 +56,13 @@
             </div>
             <div class="nav">
                 <ul>
-                    <a href="{% url 'home' %}">
+                    <li><a href="#" onclick="showLoginMessage('Home')">
                         <li>Home</li>
                     </a>
                     <a href="#">
                         <li>About Us</li>
                     </a>
-                    <a href="menu.html">
+                    <a href="">
                         <li>Menu</li>
                     </a>
                     <a href="#">
@@ -76,6 +76,20 @@
                     </a>
                 </ul>
             </div>
+            <script>
+                function showLoginMessage(page) {
+                    // Check if the user is logged in (you can replace this condition with your actual login check)
+                    var isLoggedIn = false;
+            
+                    if (!isLoggedIn) {
+                        // Display a message box if the user is not logged in
+                        alert('Please login first to redirect to ' + page);
+                    } else {
+                        // Redirect the user to the specified page if logged in
+                        window.location.href = page.toLowerCase() + '.html'; // Replace with the actual URL of your home page
+                    }
+                }
+            </script>
             
         </div>
     </header>
