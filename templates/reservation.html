@@ -196,13 +196,7 @@
                     </select>
                 </div>
 
-                {% if messages %}
-                    <div class="messages">
-                        {% for message in messages %}
-                            <div class="{% if message.tags %}alert alert-{{ message.tags }}{% endif %} custom-error-message">{{ message }}</div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
+               
 
                 <button class="btn" type="submit">Submit</button>
             </form>
