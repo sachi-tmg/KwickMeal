@@ -170,20 +170,23 @@ def Reservation(request):
             time = request.POST.get('time')
             number_of_guest = request.POST.get('number_of_guest')
 
-            Reservations.objects.create(name=name,email=email, date=date, time=time, number_of_guest=number_of_guest)
-
-
             # Check if the fields are empty
-
-            date_obj = datetime.datetime.strptime(date, '%Y-%m-%d').date()
             if not name or not email or not number_of_guest or not date or not time:
                 messages.error(request, 'All fields are required. Please fill in all the fields.')
-                return redirect('reservation')  # Redirect back to the signup page
-            if date:
-                date_obj = datetime.datetime.strptime(date, '%Y-%m-%d').date()
+                return redirect('reservation')  # Redirect back to the reservation page
+
+            # Convert date string to a datetime object
+            date_obj = datetime.strptime(date, '%Y-%m-%d').date()
+
+            # Create a reservation object
+            Reservations.objects.create(
+                name=name, email=email, date=date_obj, time=time, number_of_guest=number_of_guest
+            )
+
+            messages.success(request, 'Reservation successful!')
 
         except ValidationError as e:
-            messages.error(request, 'All fields are required. Please fill in all the fields.')
+            messages.error(request, 'Validation error. Please check your input.')
             return redirect('reservation') 
 
-    return render(request,'reservation.html')
+    return render(request, 'reservation.html')
