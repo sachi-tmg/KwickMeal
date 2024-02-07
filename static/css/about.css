@@ -277,3 +277,89 @@ footer .end span{
         transform: translateY(0);
     }
 }
+
+.cross-button {
+    position: fixed;
+    top: 20px;
+    right: 20px; /* Adjust as needed */
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+    z-index: 9999;
+}
+
+.cross-button:hover {
+    transform: scale(1.2); /* Scale the button on hover */
+}
+
+/* For screens smaller than 768px (typical mobile devices) */
+@media only screen and (max-width: 768px) {
+    nav .logo img {
+        width: 80px; /* Adjust logo size for smaller screens */
+        margin: 10px 0; /* Adjust logo margin */
+        left: 0; /* Reset logo position */
+    }
+
+    nav ul li {
+        margin: 0 5px; /* Reduce menu item margin */
+    }
+
+    .banner_bg h1 {
+        font-size: 30px; /* Reduce heading font size */
+    }
+
+    .about .about_main {
+        flex-direction: column; /* Stack about sections vertically */
+        text-align: center; /* Center align text */
+    }
+
+    .about .about_main .about_image img {
+        width: 100%; /* Make image responsive */
+        margin-bottom: 20px; /* Add space between image and text */
+    }
+
+    .about .about_main .about_text p {
+        width: 100%; /* Make text full width */
+        padding: 0 10px; /* Add padding */
+    }
+
+    .about .about_main .about_text .about_services {
+        grid-template-columns: 1fr; /* Stack services vertically */
+        gap: 10px; /* Add gap between services */
+    }
+
+    footer .footer_main {
+        grid-template-columns: 1fr; /* Stack footer items vertically */
+        text-align: center; /* Center align text */
+    }
+}
+
+/* For screens between 768px and 1024px (tablets) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    nav .logo img {
+        width: 100px; /* Adjust logo size for tablets */
+    }
+
+    .banner_bg h1 {
+        font-size: 40px; /* Adjust heading font size for tablets */
+    }
+
+    footer .footer_main {
+        grid-template-columns: repeat(2, 1fr); /* Arrange footer items in two columns */
+    }
+}
+
+/* For screens larger than 1024px (desktops) */
+@media only screen and (min-width: 1024px) {
+    nav .logo img {
+        width: 120px; /* Keep original logo size for larger screens */
+    }
+
+    .banner_bg h1 {
+        font-size: 50px; /* Keep original heading font size for larger screens */
+    }
+
+    footer .footer_main {
+        grid-template-columns: repeat(5, 1fr); /* Arrange footer items in five columns */
+    }
+}
